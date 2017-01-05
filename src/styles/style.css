@@ -1,0 +1,20 @@
+.cells {
+	width: 100px;
+	height: 100px;
+	outline: none;
+}
+
+button.cells:focus {
+	outline: none !important;
+}
+
+.slider-div {
+	display: flex;
+	justify-content: center;
+}
+
+.slider {
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
