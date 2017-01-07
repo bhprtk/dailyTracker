@@ -4,7 +4,7 @@ import Slider from 'material-ui/Slider';
 const DeclareCalorieGoal = ({showModal}) => {
 	return (
 		<button
-			className="btn btn-success"
+			className="btn btn-default"
 			onClick={showModal}>
 			Declare Calorie Goal
 		</button>

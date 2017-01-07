@@ -1,10 +1,10 @@
 import types from './types';
 
-const updateBoard = (board) => ({
-	type: types.UPDATE_BOARD,
-	board
+const nutritionixAutocomplete = (value) => ({
+	type: types.NUTRITIONIX_AUTOCOMPLETE,
+	value
 });
 
 export default {
-	updateBoard
+	nutritionixAutocomplete
 };

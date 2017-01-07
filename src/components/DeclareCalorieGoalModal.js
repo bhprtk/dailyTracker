@@ -6,10 +6,15 @@ class DeclareCalorieGoalModal extends Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			slider: 50
+		}
+
 		this.setCalories = this.setCalories.bind(this);
 	}
 
 	setCalories(event, value) {
+		this.setState({ slider: value })
 		this.props.setCalories(value);
 	}
 
@@ -29,7 +34,7 @@ class DeclareCalorieGoalModal extends Component {
 							max={5000}
 							step={1}
 							defaultValue={100}
-							value={this.state.secondSlider}
+							value={this.state.slider}
 							onChange={this.setCalories}
 							/>
 						<h1 style={styles.calorieHeader}>5000</h1>

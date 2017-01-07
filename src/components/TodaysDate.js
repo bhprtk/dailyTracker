@@ -2,11 +2,19 @@ import React from 'react';
 import moment from 'moment'
 
 const TodaysDate = ({}) => {
-	let date = moment().format('MMMM Do YYYY, h:mm:ss a');
-	console.log ('date:', date)
 	return (
-		<h1>{moment().format('MMMM Do YYYY, h:mm:ss a')}</h1>
+		<div style={styles.container} className="col-md-6 col-sm-6 col-xs-6">
+			<h1 className="text-center">{moment().format('LL')}</h1>
+		</div>
 	)
+}
+
+const styles = {
+	container: {
+		background: '#6D929B',
+		color: '#fafafa',
+		height: 100
+	}
 }
 
 export default TodaysDate;

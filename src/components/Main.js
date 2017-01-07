@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
+import AddMeal from './AddMeal';
+import CaloriesConsumed from './CaloriesConsumed';
 import DeclareCalorieGoal from './DeclareCalorieGoal';
 import DeclareCalorieGoalModal from './DeclareCalorieGoalModal';
+import TodaysDate from './TodaysDate';
 
 class Main extends Component {
 	constructor(props) {
@@ -39,9 +42,23 @@ class Main extends Component {
 			calorieGoals = this.state.calorieGoals
 		}
 		return (
-			<div className="container">
-				<h1>{moment().format('LL')}</h1>
-				<h2>Calorie Goals: {calorieGoals}</h2>
+			<div className="">
+				<div className="row">
+					<TodaysDate />
+				</div>
+				<div className="row">
+					<div
+						className="col-md-6 col-sm-6 col-xs-6"
+						style={styles.calorieGoals}>
+						<h1 className="text-center">Calorie Goals: {calorieGoals}</h1>
+					</div>
+					<div className="col-md-6 col-sm-6 col-xs-6">
+						<CaloriesConsumed />
+					</div>
+
+				</div>
+
+				<AddMeal />
 
 				<DeclareCalorieGoalModal
 					show={showModal}
@@ -53,4 +70,13 @@ class Main extends Component {
 	}
 
 }
+
+const styles = {
+	calorieGoals: {
+		background: '#ACD1E9',
+		color: '#fafafa',
+		height: 100
+	}
+}
+
 export default Main;
