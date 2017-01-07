@@ -4,8 +4,9 @@ import actions from '../actions/creators';
 
 export default (api) => {
 
-	function* worker(place) {
-		const gymResults = yield call(api.nutritionixAutocomplete, place);
+	function* worker(value) {
+		const searchInstantResults = yield call(api.nutritionixAutocomplete, value);
+		yield put(actions.receiveSearchInstantResults(searchInstantResults));
 		// if(gymResults.status === 200) {
 		// 	yield put(yelpActions.receiveGymResults(gymResults.data));
 		// } else {
@@ -16,8 +17,7 @@ export default (api) => {
 	function* watcher() {
 		while(true) {
 			const input = yield take(types.NUTRITIONIX_AUTOCOMPLETE);
-			console.log ('input:', input)
-			// yield call(worker, input.place);
+			yield call(worker, input.value);
 		}
 	}
 

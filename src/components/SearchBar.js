@@ -18,12 +18,12 @@ class SearchBar extends Component {
 	handleChange(e) {
 		const { value } = e.target;
 		const { actions } = this.props;
-		console.log ('actions:', actions)
 		actions.nutritionixAutocomplete(value);
 		this.setState({ input: value });
 	}
 
 	render() {
+		console.log ('this.props.searchInstantResults:', this.props.searchInstantResults)
 		return (
 			<input
 				type="text"
@@ -36,7 +36,7 @@ class SearchBar extends Component {
 
 function mapStateToProps(state, ownProps) {
 	return {
-
+		searchInstantResults: state.searchInstantResults.searchInstantResults
 	}
 }
 

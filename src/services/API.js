@@ -1,5 +1,14 @@
+import axios from 'axios';
+
 const nutritionixAutocomplete = (value) => {
-	console.log ('value:', value)
+	return axios.get(`https://trackapi.nutritionix.com/v2/search/instant?query=${value}`, {
+		headers: {
+			'x-app-id': 'bd3146c4',
+			'x-app-key': 'e398e6b604b07c6171e5483bab832f74'
+		}
+	})
+		.then(data => data)
+		.catch(error => console.log ('error:', error))
 };
 
 export default {

@@ -5,6 +5,12 @@ const nutritionixAutocomplete = (value) => ({
 	value
 });
 
+const receiveSearchInstantResults = (results) => ({
+	type: types.RECEIVE_SEARCH_INSTANT_RESULTS,
+	results
+})
+
 export default {
-	nutritionixAutocomplete
+	nutritionixAutocomplete,
+	receiveSearchInstantResults
 };
