@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 import actions from '../actions/creators';
+import SearchResults from './SearchResults';
 
 class SearchBar extends Component {
 	constructor(props) {
@@ -18,19 +19,36 @@ class SearchBar extends Component {
 	handleChange(e) {
 		const { value } = e.target;
 		const { actions } = this.props;
-		actions.nutritionixAutocomplete(value);
+		if(value) {
+			actions.nutritionixAutocomplete(value);
+		}
 		this.setState({ input: value });
 	}
 
 	render() {
-		console.log ('this.props.searchInstantResults:', this.props.searchInstantResults)
 		return (
-			<input
-				type="text"
-				className="form-control"
-				value={this.state.input}
-				onChange={this.handleChange}/>
+			<div>
+				<input
+					type="text"
+					className="form-control"
+					value={this.state.input}
+					onChange={this.handleChange}
+					style={styles.inputBox}/>
+
+				<If condition={this.state.input}>
+					<SearchResults
+						results={this.props.searchInstantResults.common}/>
+				</If>
+
+			</div>
+
 		)
+	}
+}
+
+const styles = {
+	inputBox: {
+		fontSize: 20
 	}
 }
 

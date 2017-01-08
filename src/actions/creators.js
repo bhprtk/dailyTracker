@@ -8,9 +8,20 @@ const nutritionixAutocomplete = (value) => ({
 const receiveSearchInstantResults = (results) => ({
 	type: types.RECEIVE_SEARCH_INSTANT_RESULTS,
 	results
-})
+});
+
+const selectFoodItem = (foodItem) => ({
+	type: types.SELECT_FOOD_ITEM,
+	foodItem
+});
+
+const removeSelectedFoodItem = () => ({
+	type: types.REMOVE_SELECTED_FOOD_ITEM
+});
 
 export default {
 	nutritionixAutocomplete,
-	receiveSearchInstantResults
+	receiveSearchInstantResults,
+	selectFoodItem,
+	removeSelectedFoodItem
 };

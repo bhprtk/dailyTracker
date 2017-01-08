@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
+import React, { Component } from 'react';
 import TimePicker from 'material-ui/TimePicker';
 
+import DisplaySelectedFoodItem from './DisplaySelectedFoodItem';
 import SearchBar from './SearchBar';
 
 class AddMealModal extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
-		const { showModal, hideModal } = this.props;
+		const { showModal, hideModal, selectedFoodItem } = this.props;
 		return (
 			<Modal show={showModal} onHide={hideModal}>
 				<Modal.Header>
@@ -19,7 +25,12 @@ class AddMealModal extends Component {
 					<TimePicker
 						hintText="End Time"
 						/>
-					<SearchBar />
+					<If condition={!selectedFoodItem}>
+						<SearchBar />
+					</If>
+					<If condition={selectedFoodItem}>
+						<DisplaySelectedFoodItem foodItem={selectedFoodItem}/>
+					</If>
 				</Modal.Body>
 			</Modal>
 		)
@@ -36,4 +47,10 @@ const styles = {
 	}
 }
 
-export default AddMealModal;
+function mapStateToProps(state, ownProps) {
+	return {
+		selectedFoodItem: state.selectedFoodItem.selectedFoodItem
+	}
+}
+
+export default connect(mapStateToProps)(AddMealModal);
