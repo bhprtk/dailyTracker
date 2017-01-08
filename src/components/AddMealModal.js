@@ -5,6 +5,7 @@ import TimePicker from 'material-ui/TimePicker';
 
 import DisplaySelectedFoodItem from './DisplaySelectedFoodItem';
 import SearchBar from './SearchBar';
+import ServingSize from './ServingSize';
 
 class AddMealModal extends Component {
 	constructor(props) {
@@ -19,17 +20,16 @@ class AddMealModal extends Component {
 					<h3 className="text-center">Add Meal</h3>
 				</Modal.Header>
 				<Modal.Body>
-					<TimePicker
+					{/*<TimePicker
 						hintText="Start Time"
-						/>
-					<TimePicker
-						hintText="End Time"
-						/>
+						/>*/}
+
 					<If condition={!selectedFoodItem}>
 						<SearchBar />
 					</If>
 					<If condition={selectedFoodItem}>
 						<DisplaySelectedFoodItem foodItem={selectedFoodItem}/>
+						<ServingSize />
 					</If>
 				</Modal.Body>
 			</Modal>

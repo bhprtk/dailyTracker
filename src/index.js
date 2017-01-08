@@ -8,6 +8,7 @@ injectTapEventPlugin();
 
 import './styles/style.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/react-select/dist/react-select.css';
 
 import Main from './components/Main';
 

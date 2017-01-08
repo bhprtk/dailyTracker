@@ -20,12 +20,26 @@ class DisplaySelectedFoodItem extends Component {
 	render() {
 		const { foodItem } = this.props;
 		return (
-			<button
-				className="btn btn-default"
-				onClick={this.removeSelectedFoodItem}>
-				{foodItem.food_name}
-			</button>
+			<a
+				onClick={this.removeSelectedFoodItem}
+				role="button"
+				className="list-group-item">
+				<img src={foodItem.photo.thumb} style={styles.thumbnail} />
+				<span style={styles.foodName}>{foodItem.food_name}</span>
+			</a>
 		)
+	}
+}
+
+const styles = {
+	thumbnail: {
+		height: 50,
+		width: 50
+	},
+	foodName: {
+		marginLeft: 15,
+		fontSize: 24,
+		color: '#696969'
 	}
 }
 
