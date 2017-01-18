@@ -3,17 +3,45 @@ import moment from 'moment'
 
 const TodaysDate = ({}) => {
 	return (
-		<div style={styles.container} className="col-md-6 col-sm-6 col-xs-6">
-			<h1 className="text-center">{moment().format('LL')}</h1>
+		<div
+			className="text-center"
+			style={styles.container}>
+
+				<h3
+					className="date"
+					style={styles.date}>
+					<i className="fa fa-calendar" aria-hidden="true"></i> {(moment().format('ddd ll'))}
+				</h3>
+
 		</div>
 	)
 }
 
 const styles = {
 	container: {
-		background: '#6D929B',
-		color: '#fafafa',
-		height: 100
+		background: '#78909C',
+		color: '#fff',
+		padding: 50,
+		// fontSize: 24
+	},
+	date: {
+		// color: '#696969',
+		// fontSize: 50,
+		fontWeight: 'bold'
+	},
+	innerDiv: {
+		background: 'white',
+		borderTopLeftRadius: 5,
+		borderTopRightRadius: 5,
+		padding: 20
+		// paddingTop: 10,
+		// paddingLeft: 10,
+		// paddingRight: 10,
+	},
+	year: {
+		// color: '#a8a8a8',
+		// fontSize: 40,
+		fontWeight: 'bold'
 	}
 }
 

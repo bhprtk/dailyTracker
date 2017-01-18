@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 import AddMeal from './AddMeal';
-import CaloriesConsumed from './CaloriesConsumed';
 import DeclareCalorieGoal from './DeclareCalorieGoal';
 import DeclareCalorieGoalModal from './DeclareCalorieGoalModal';
+import DisplayCalorieGoal from './DisplayCalorieGoal';
+import DisplayCaloriesConsumed from './DisplayCaloriesConsumed';
 import TodaysDate from './TodaysDate';
 
 class Main extends Component {
@@ -36,24 +37,18 @@ class Main extends Component {
 	render() {
 		let calorieGoals;
 		const { showModal } = this.state;
-		if(!this.state.calorieGoals) {
-			calorieGoals = <DeclareCalorieGoal showModal={this.showModal}/>
-		} else {
-			calorieGoals = this.state.calorieGoals
-		}
+
 		return (
-			<div className="">
+			<div className="container">
 				<div className="row">
 					<TodaysDate />
 				</div>
 				<div className="row">
-					<div
-						className="col-md-6 col-sm-6 col-xs-6"
-						style={styles.calorieGoals}>
-						<h1 className="text-center">Calorie Goals: {calorieGoals}</h1>
+					<div className="col-md-6 col-sm-6 col-xs-6">
+						<DisplayCalorieGoal showModal={this.showModal}/>
 					</div>
 					<div className="col-md-6 col-sm-6 col-xs-6">
-						<CaloriesConsumed />
+						<DisplayCaloriesConsumed />
 					</div>
 
 				</div>
@@ -69,14 +64,6 @@ class Main extends Component {
 		);
 	}
 
-}
-
-const styles = {
-	calorieGoals: {
-		background: '#ACD1E9',
-		color: '#fafafa',
-		height: 100
-	}
 }
 
 export default Main;

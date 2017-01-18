@@ -1,11 +1,33 @@
+.base {
+	margin-top: -10px
+}
+
+.body {
+	background: #EAEDF1
+}
+
+button.cells:focus {
+	outline: none !important;
+}
+
 .cells {
 	width: 100px;
 	height: 100px;
 	outline: none;
 }
 
-button.cells:focus {
-	outline: none !important;
+.date {
+	/*font-family: 'Arsenal', sans-serif;*/
+	/*font-family: 'Hind', sans-serif;*/
+	/*font-family: 'Fira Sans', sans-serif;*/
+	font-family: 'Catamaran', sans-serif;
+
+
+}
+
+.progress-bar {
+	box-shadow: none;
+	/*background: #2BC253;*/
 }
 
 .slider-div {

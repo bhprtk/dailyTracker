@@ -33,7 +33,8 @@ class SearchBar extends Component {
 					className="form-control"
 					value={this.state.input}
 					onChange={this.handleChange}
-					style={styles.inputBox}/>
+					style={styles.inputBox}
+					placeholder="What did you eat today?"/>
 
 				<If condition={this.state.input}>
 					<SearchResults

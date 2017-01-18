@@ -1,8 +1,10 @@
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import React, { Component } from 'react';
 import TimePicker from 'material-ui/TimePicker';
 
+import actions from '../actions/creators';
 import DisplaySelectedFoodItem from './DisplaySelectedFoodItem';
 import SearchBar from './SearchBar';
 import ServingSize from './ServingSize';
@@ -10,6 +12,22 @@ import ServingSize from './ServingSize';
 class AddMealModal extends Component {
 	constructor(props) {
 		super(props);
+
+		this.changeCalories = this.changeCalories.bind(this);
+		this.saveMeal = this.saveMeal.bind(this);
+	}
+
+	changeCalories(qty, unit) {
+		const { actions, selectedFoodItem } = this.props;
+		const query = qty + " " + unit + " " + selectedFoodItem.food_name;
+		actions.nutritionixNaturalLanguage(query);
+	}
+
+	saveMeal() {
+		const { actions, selectedFoodItem, hideModal } = this.props;
+		actions.updateTodaysCalories(selectedFoodItem.nf_calories);
+		actions.removeSelectedFoodItem();
+		hideModal();
 	}
 
 	render() {
@@ -28,9 +46,18 @@ class AddMealModal extends Component {
 						<SearchBar />
 					</If>
 					<If condition={selectedFoodItem}>
-						<DisplaySelectedFoodItem foodItem={selectedFoodItem}/>
-						<ServingSize />
+						<DisplaySelectedFoodItem foodItem={selectedFoodItem} />
+						<ServingSize
+							measures={selectedFoodItem.alt_measures}
+							changeCalories={this.changeCalories}
+							selectedFoodItem={selectedFoodItem} />
 					</If>
+
+					<button
+						className="btn btn-success"
+						onClick={this.saveMeal}>
+						Add
+					</button>
 				</Modal.Body>
 			</Modal>
 		)
@@ -53,4 +80,10 @@ function mapStateToProps(state, ownProps) {
 	}
 }
 
-export default connect(mapStateToProps)(AddMealModal);
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(actions, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddMealModal);

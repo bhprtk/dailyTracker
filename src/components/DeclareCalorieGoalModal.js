@@ -1,21 +1,34 @@
-import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
+import React, { Component } from 'react';
 import Slider from 'material-ui/Slider';
+
+import actions from '../actions/creators';
 
 class DeclareCalorieGoalModal extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			slider: 50
+			slider: 0
 		}
 
+		this.changeSliderValue = this.changeSliderValue.bind(this);
 		this.setCalories = this.setCalories.bind(this);
 	}
 
-	setCalories(event, value) {
+	changeSliderValue(event, value) {
 		this.setState({ slider: value })
-		this.props.setCalories(value);
+		// this.props.setCalories(value);
+	}
+
+	setCalories() {
+		const { actions, hide } = this.props;
+		actions.setCalorieGoal(this.state.slider);
+		hide();
+		console.log ('this.state.slider:', this.state.slider)
+
 	}
 
 	render() {
@@ -32,18 +45,24 @@ class DeclareCalorieGoalModal extends Component {
 							className="slider"
 							min={0}
 							max={5000}
-							step={1}
+							step={5}
 							defaultValue={100}
 							value={this.state.slider}
-							onChange={this.setCalories}
+							onChange={this.changeSliderValue}
 							/>
 						<h1 style={styles.calorieHeader}>5000</h1>
 
 					</div>
 
 					<h1 className="text-center" style={styles.calorie}>
-						{this.props.calorieGoals} cals
+						{this.state.slider} cals
 					</h1>
+
+					<button
+						className="btn btn-success"
+						onClick={this.setCalories}>
+						Declare
+					</button>
 				</Modal.Body>
 			</Modal>
 		)
@@ -63,4 +82,16 @@ const styles = {
 	}
 }
 
-export default DeclareCalorieGoalModal;
+function mapStateToProps(state, ownProps) {
+	return {
+
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(actions, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeclareCalorieGoalModal);
