@@ -39,11 +39,8 @@ class Main extends Component {
 
 
 	render() {
-
 		const { showModal } = this.state;
 		const { caloriesGoal } = this.props;
-		console.log ('caloriesGoal:', caloriesGoal)
-
 		return (
 			<div className="container">
 				<div className="row">
@@ -67,9 +64,10 @@ class Main extends Component {
 				Reset Calories
 			</button>
 
-				<DeclareCalorieGoalModal
-					show={showModal}
-					hide={this.hideModal}/>
+			<DeclareCalorieGoalModal
+				show={showModal}
+				hide={this.hideModal}
+				caloriesGoal={caloriesGoal}/>
 			</div>
 		);
 	}

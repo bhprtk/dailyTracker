@@ -3,13 +3,31 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import image_heart from '../assets/heart.gif';
 
+import DeclareCalorieGoalModal from './DeclareCalorieGoalModal';
+
 
 class DisplayCaloriesConsumed extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			showModal: false
+		}
+
+		this.hideModal = this.hideModal.bind(this);
+		this.showModal = this.showModal.bind(this);
+	}
+
+	hideModal() {
+		this.setState({ showModal: false });
+	}
+
+	showModal() {
+		this.setState({ showModal: true });
 	}
 
 	render() {
+		const { showModal } = this.state;
 		const { caloriesConsumed, caloriesGoal } = this.props;
 		let percentage, rawPercentage;
 		const formatCaloriesConsumed = Math.round(caloriesConsumed);
@@ -18,7 +36,9 @@ class DisplayCaloriesConsumed extends Component {
 			percentage = ((caloriesConsumed / caloriesGoal) * 100).toString() + "%";
 		}
 		return (
-			<div style={styles.container}>
+			<div
+				onClick={this.showModal}
+				style={styles.container}>
 				<div style={styles.flexContainer}>
 					<img
 						style={styles.heartImage}
@@ -46,6 +66,10 @@ class DisplayCaloriesConsumed extends Component {
 					</div>
 
 				</div>
+				<DeclareCalorieGoalModal
+					show={showModal}
+					hide={this.hideModal}
+					caloriesGoal={caloriesGoal}/>
 			</div>
 		)
 	}
@@ -79,7 +103,7 @@ const styles = {
 	},
 	heartImage: {
 		height: 75,
-		width: 75
+		width: 85
 	},
 	progress: {
 		background: '#DD5152',

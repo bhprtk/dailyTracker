@@ -11,15 +11,37 @@ class DeclareCalorieGoalModal extends Component {
 		super(props);
 
 		this.state = {
-			slider: 0
+			slider: this.props.caloriesGoal
 		}
 
 		this.changeSliderValue = this.changeSliderValue.bind(this);
+		this.decreaseSliderValue = this.decreaseSliderValue.bind(this);
+		this.increaseSliderValue = this.increaseSliderValue.bind(this);
+		this.resetCalories = this.resetCalories.bind(this);
 		this.setCalories = this.setCalories.bind(this);
 	}
 
 	changeSliderValue(event, value) {
 		this.setState({ slider: value })
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { caloriesGoal } = nextProps;
+		this.setState({ slider: caloriesGoal })
+	}
+
+	decreaseSliderValue() {
+		const { slider } = this.state;
+		this.setState({ slider: slider - 1 })
+	}
+
+	increaseSliderValue() {
+		const { slider } = this.state;
+		this.setState({ slider: slider + 1 })
+	}
+
+	resetCalories() {
+		this.setState({ slider: 0 });
 	}
 
 	setCalories() {
@@ -30,38 +52,75 @@ class DeclareCalorieGoalModal extends Component {
 
 	render() {
 		const { show, hide } = this.props;
+		let caloriesGoal = this.state.slider;
 		return (
 			<Modal show={show} onHide={hide}>
 				<Modal.Header>
 					<h5 className="text-center" style={styles.modalHeader}>What is your <span style={{color: '#90A4AE'}}>target</span> calories intake today?</h5>
 				</Modal.Header>
 				<Modal.Body>
-					<div className="slider-div">
-						<h1 style={styles.calorieHeader}>0</h1>
+					<div
+						className="slider-div"
+						style={styles.sliderDiv}>
+						<h3 style={styles.calorieHeader}>0</h3>
 						<Slider
 							className="slider"
-							min={0}
-							max={5000}
-							step={5}
 							defaultValue={100}
-							value={this.state.slider}
+							max={5000}
+							min={0}
 							onChange={this.changeSliderValue}
+							step={5}
+							value={caloriesGoal}
 							/>
-						<h1 style={styles.calorieHeader}>5000</h1>
+						<h3 style={styles.calorieHeader}>5000</h3>
 
 					</div>
 
-					<h1 className="text-center" style={styles.calorie}>
-						{this.state.slider} cals
-					</h1>
+					<div
+						className="text-center">
+						<button
+							className="btn btn-default"
+							onClick={this.increaseSliderValue}
+							style={styles.carets}>
+							<i className="fa fa-caret-up"></i>
+						</button>
 
-					<button
-						className="btn btn-default"
-						onClick={this.setCalories}>
-						Declare
-					</button>
+						<h1
+							className="date"
+							style={styles.calorie}>
+							{caloriesGoal} cals
+						</h1>
+						<button
+							className="btn btn-default"
+							onClick={this.decreaseSliderValue}
+							style={styles.carets}>
+							<i className="fa fa-caret-down"></i>
+						</button>
+
+					</div>
+
+
 
 				</Modal.Body>
+
+				<Modal.Footer>
+					<button
+						className="date col-md-5 col-sm-5 col-xs-5"
+						onClick={this.resetCalories}
+						style={styles.submitButton}>
+						<h4>Reset</h4>
+					</button>
+
+					<button
+						className="date col-md-5 col-sm-5 col-xs-5"
+						onClick={this.setCalories}
+						style={styles.submitButton}>
+						<h4>Confirm</h4>
+					</button>
+
+
+
+				</Modal.Footer>
 			</Modal>
 		)
 	}
@@ -75,14 +134,29 @@ const styles = {
 	calorieHeader: {
 		color: '#90A4AE'
 	},
+	carets: {
+		color: '#90A4AE'
+	},
 	modalHeader: {
 		color: '#696969'
+	},
+	sliderDiv: {
+		display: 'flex'
+	},
+	submitButton: {
+		background: '#fff',
+		borderColor: '#90A4AE',
+		borderStyle: 'solid',
+		borderWidth: 2,
+		color: '#90A4AE',
+		margin: 10
+		// width: 200
 	}
 }
 
 function mapStateToProps(state, ownProps) {
 	return {
-
+		// caloriesGoal: state.caloriesGoal.caloriesGoal
 	}
 }
 
