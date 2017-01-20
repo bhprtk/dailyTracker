@@ -25,6 +25,18 @@ button.cells:focus {
 
 }
 
+.food-thumbnail {
+	position: absolute;
+	height: 45px;
+	right: 1;
+	width: 50px;
+	top: 0;
+}
+
+.list-group-item {
+	position: relative;
+}
+
 .outline {
 	border: 2px solid #fff;
 	border-radius: 30px;

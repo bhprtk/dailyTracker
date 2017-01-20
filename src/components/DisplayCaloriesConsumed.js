@@ -79,7 +79,7 @@ const styles = {
 	container: {
 		background: '#DD5152',
 		color: '#fff',
-		height: 200,
+		height: '40vh',
 		paddingLeft: 10,
 		paddingRight: 10,
 		paddingTop: 40,

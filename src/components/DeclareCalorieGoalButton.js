@@ -23,7 +23,7 @@ const styles = {
 		color: '#fff',
 		background: '#DD5152',
 		fontWeight: 'bold',
-		height: 170
+		height: '40vh'
 	}
 }
 

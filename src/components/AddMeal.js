@@ -51,7 +51,7 @@ const styles = {
 		color: '#fff',
 		background: '#81C784',
 		fontWeight: 'bold',
-		height: 170
+		height: '30vh'
 	}
 }
 

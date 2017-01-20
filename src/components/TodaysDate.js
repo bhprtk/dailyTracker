@@ -21,6 +21,7 @@ const styles = {
 	container: {
 		background: '#78909C',
 		color: '#fff',
+		height: '30vh',
 		padding: 50,
 		// fontSize: 24
 	},

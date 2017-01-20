@@ -23,6 +23,7 @@ class SearchBar extends Component {
 			actions.nutritionixAutocomplete(value);
 		}
 		this.setState({ input: value });
+		this.props.changeSearchBarInput(value);
 	}
 
 	render() {
@@ -30,11 +31,11 @@ class SearchBar extends Component {
 			<div>
 				<input
 					type="text"
-					className="form-control"
+					className="form-control date"
 					value={this.state.input}
 					onChange={this.handleChange}
 					style={styles.inputBox}
-					placeholder="What did you eat today?"/>
+					placeholder="Search food item ..."/>
 
 				<If condition={this.state.input}>
 					<SearchResults
@@ -49,7 +50,7 @@ class SearchBar extends Component {
 
 const styles = {
 	inputBox: {
-		fontSize: 20
+		fontSize: 18
 	}
 }
 

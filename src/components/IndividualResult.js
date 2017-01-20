@@ -21,10 +21,13 @@ class IndividualResult extends Component {
 		const { result } = this.props;
 		return (
 			<a
+				style={styles.container}
 				onClick={this.selectFood}
 				role="button"
 				className="list-group-item">
-				<img src={result.photo.thumb} style={styles.thumbnail} />
+				<img
+					src={result.photo.thumb}
+					style={styles.thumbnail} />
 				<span style={styles.foodName}>{result.food_name}</span>
 			</a>
 		)
@@ -33,8 +36,13 @@ class IndividualResult extends Component {
 
 const styles = {
 	thumbnail: {
-		height: 50,
-		width: 50
+		height: 45,
+		width: 45
+	},
+	container: {
+		display: 'flex',
+		height: 55,
+		padding: 5
 	},
 	foodName: {
 		marginLeft: 15,

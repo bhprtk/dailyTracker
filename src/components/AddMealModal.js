@@ -13,7 +13,12 @@ class AddMealModal extends Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			searchBarInput: ''
+		}
+
 		this.changeCalories = this.changeCalories.bind(this);
+		this.changeSearchBarInput = this.changeSearchBarInput.bind(this);
 		this.saveMeal = this.saveMeal.bind(this);
 	}
 
@@ -21,6 +26,10 @@ class AddMealModal extends Component {
 		const { actions, selectedFoodItem } = this.props;
 		const query = qty + " " + unit + " " + selectedFoodItem.food_name;
 		actions.nutritionixNaturalLanguage(query);
+	}
+
+	changeSearchBarInput(value) {
+		this.setState({ searchBarInput: value });
 	}
 
 	saveMeal() {
@@ -34,16 +43,25 @@ class AddMealModal extends Component {
 		const { showModal, hideModal, selectedFoodItem } = this.props;
 		return (
 			<Modal show={showModal} onHide={hideModal}>
-				<Modal.Header>
-					<h3 className="text-center">Add Meal</h3>
-				</Modal.Header>
+				<If condition={!this.state.searchBarInput}>
+					<Modal.Header>
+						<h3
+							className="date text-center"
+							style={styles.headerText}>
+							What did you <span style={{color: '#90A4AE'}}>eat</span> today?
+						</h3>
+					</Modal.Header>
+
+				</If>
 				<Modal.Body>
 					{/*<TimePicker
 						hintText="Start Time"
 						/>*/}
 
 					<If condition={!selectedFoodItem}>
-						<SearchBar />
+						<SearchBar
+							changeSearchBarInput={this.changeSearchBarInput}
+							/>
 					</If>
 					<If condition={selectedFoodItem}>
 						<DisplaySelectedFoodItem foodItem={selectedFoodItem} />
@@ -53,18 +71,25 @@ class AddMealModal extends Component {
 							selectedFoodItem={selectedFoodItem} />
 					</If>
 
+				</Modal.Body>
+
+				<Modal.Footer>
 					<button
 						className="btn btn-success"
 						onClick={this.saveMeal}>
 						Add
 					</button>
-				</Modal.Body>
+
+				</Modal.Footer>
 			</Modal>
 		)
 	}
 }
 
 const styles = {
+	headerText: {
+		color: '#696969'
+	},
 	timePicker: {
 		// borderWidth: 1,
 		borderColor: '#696969',

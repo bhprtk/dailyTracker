@@ -20,7 +20,6 @@ class Main extends Component {
 		}
 
 		this.hideModal = this.hideModal.bind(this);
-		this.resetCaloriesGoal = this.resetCaloriesGoal.bind(this);
 		this.showModal = this.showModal.bind(this);
 	}
 
@@ -28,15 +27,9 @@ class Main extends Component {
 		this.setState({ showModal: false });
 	}
 
-	resetCaloriesGoal() {
-		const { actions } = this.props;
-		actions.resetCaloriesGoal();
-	}
-
 	showModal() {
 		this.setState({ showModal: true });
 	}
-
 
 	render() {
 		const { showModal } = this.state;
@@ -57,12 +50,6 @@ class Main extends Component {
 				<div className="row">
 					<AddMeal />
 				</div>
-
-			<button
-				className="btn btn-default"
-				onClick={this.resetCaloriesGoal}>
-				Reset Calories
-			</button>
 
 			<DeclareCalorieGoalModal
 				show={showModal}
