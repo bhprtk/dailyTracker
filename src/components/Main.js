@@ -1,10 +1,12 @@
+import actions from '../actions/creators';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import moment from 'moment';
 
 import AddMeal from './AddMeal';
-import DeclareCalorieGoal from './DeclareCalorieGoal';
+import DeclareCalorieGoalButton from './DeclareCalorieGoalButton';
 import DeclareCalorieGoalModal from './DeclareCalorieGoalModal';
-import DisplayCalorieGoal from './DisplayCalorieGoal';
 import DisplayCaloriesConsumed from './DisplayCaloriesConsumed';
 import TodaysDate from './TodaysDate';
 
@@ -17,26 +19,30 @@ class Main extends Component {
 			showModal: false
 		}
 
-		this.showModal = this.showModal.bind(this);
 		this.hideModal = this.hideModal.bind(this);
-		this.setCalories = this.setCalories.bind(this);
-	}
-
-	showModal() {
-		this.setState({ showModal: true });
+		this.resetCaloriesGoal = this.resetCaloriesGoal.bind(this);
+		this.showModal = this.showModal.bind(this);
 	}
 
 	hideModal() {
 		this.setState({ showModal: false });
 	}
 
-	setCalories(value) {
-		this.setState({ calorieGoals: value })
+	resetCaloriesGoal() {
+		const { actions } = this.props;
+		actions.resetCaloriesGoal();
 	}
 
+	showModal() {
+		this.setState({ showModal: true });
+	}
+
+
 	render() {
-		let calorieGoals;
+
 		const { showModal } = this.state;
+		const { caloriesGoal } = this.props;
+		console.log ('caloriesGoal:', caloriesGoal)
 
 		return (
 			<div className="container">
@@ -44,26 +50,42 @@ class Main extends Component {
 					<TodaysDate />
 				</div>
 				<div className="row">
-					<div className="col-md-6 col-sm-6 col-xs-6">
-						<DisplayCalorieGoal showModal={this.showModal}/>
-					</div>
-					<div className="col-md-6 col-sm-6 col-xs-6">
+					<If condition={!caloriesGoal}>
+						<DeclareCalorieGoalButton showModal={this.showModal}/>
+					</If>
+					<If condition={caloriesGoal}>
 						<DisplayCaloriesConsumed />
-					</div>
-
+					</If>
+				</div>
+				<div className="row">
+					<AddMeal />
 				</div>
 
-				<AddMeal />
+			<button
+				className="btn btn-default"
+				onClick={this.resetCaloriesGoal}>
+				Reset Calories
+			</button>
 
 				<DeclareCalorieGoalModal
 					show={showModal}
-					hide={this.hideModal}
-					setCalories={this.setCalories}
-					calorieGoals={this.state.calorieGoals}/>
+					hide={this.hideModal}/>
 			</div>
 		);
 	}
 
 }
 
-export default Main;
+function mapStateToProps(state, ownProps) {
+	return {
+		caloriesGoal: state.caloriesGoal.caloriesGoal
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(actions, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

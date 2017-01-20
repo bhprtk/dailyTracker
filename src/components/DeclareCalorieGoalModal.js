@@ -20,15 +20,12 @@ class DeclareCalorieGoalModal extends Component {
 
 	changeSliderValue(event, value) {
 		this.setState({ slider: value })
-		// this.props.setCalories(value);
 	}
 
 	setCalories() {
 		const { actions, hide } = this.props;
 		actions.setCalorieGoal(this.state.slider);
 		hide();
-		console.log ('this.state.slider:', this.state.slider)
-
 	}
 
 	render() {
@@ -36,7 +33,7 @@ class DeclareCalorieGoalModal extends Component {
 		return (
 			<Modal show={show} onHide={hide}>
 				<Modal.Header>
-					<h3 className="text-center" style={styles.modalHeader}>What is your <span style={{color: '#90A4AE'}}>target</span> calories intake today?</h3>
+					<h5 className="text-center" style={styles.modalHeader}>What is your <span style={{color: '#90A4AE'}}>target</span> calories intake today?</h5>
 				</Modal.Header>
 				<Modal.Body>
 					<div className="slider-div">
@@ -59,10 +56,11 @@ class DeclareCalorieGoalModal extends Component {
 					</h1>
 
 					<button
-						className="btn btn-success"
+						className="btn btn-default"
 						onClick={this.setCalories}>
 						Declare
 					</button>
+
 				</Modal.Body>
 			</Modal>
 		)
