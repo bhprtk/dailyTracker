@@ -56,7 +56,7 @@ class DeclareCalorieGoalModal extends Component {
 		let caloriesGoal = this.state.slider;
 		return (
 			<Modal show={show} onHide={hide}>
-				<Modal.Header>
+				<Modal.Header closeButton>
 					<h5 className="text-center" style={styles.modalHeader}>What is your <span style={{color: '#90A4AE'}}>target</span> calories intake today?</h5>
 				</Modal.Header>
 				<Modal.Body>

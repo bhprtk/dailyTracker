@@ -12,8 +12,9 @@ class DisplaySelectedFoodItem extends Component {
 	}
 
 	removeSelectedFoodItem() {
-		const { actions } = this.props;
+		const { actions, resetSearchBarInput } = this.props;
 		actions.removeSelectedFoodItem();
+		resetSearchBarInput();
 	}
 
 	render() {
@@ -26,7 +27,15 @@ class DisplaySelectedFoodItem extends Component {
 					className="food-thumbnail-for-modal"
 					src={foodItem.photo.thumb}
 					style={styles.thumbnail} />
-				<span style={styles.foodName}>{foodItem.food_name}</span>
+				<span style={styles.foodName}>
+					{foodItem.food_name}
+					<p style={{
+							color: '#90A4AE',
+							fontSize: 12,
+							fontStyle: 'italic'
+						}}>Touch to remove item</p>
+				</span>
+
 			</div>
 
 		)

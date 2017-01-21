@@ -21,6 +21,7 @@ class AddMealModal extends Component {
 
 		this.changeCalories = this.changeCalories.bind(this);
 		this.changeSearchBarInput = this.changeSearchBarInput.bind(this);
+		this.resetSearchBarInput = this.resetSearchBarInput.bind(this);
 		this.resetServingSizeState = this.resetServingSizeState.bind(this);
 		this.saveMeal = this.saveMeal.bind(this);
 	}
@@ -35,6 +36,16 @@ class AddMealModal extends Component {
 		this.setState({ searchBarInput: value });
 	}
 
+	resetServingSizeState() {
+		const { resetServingSizeState } = this.state;
+
+		this.setState({ resetServingSizeState: !resetServingSizeState })
+	}
+
+	resetSearchBarInput() {
+		this.setState({ searchBarInput: '' });
+	}
+
 	saveMeal() {
 		const { actions, selectedFoodItem, hideModal } = this.props;
 		actions.updateTodaysCalories(selectedFoodItem.nf_calories);
@@ -42,18 +53,13 @@ class AddMealModal extends Component {
 		hideModal();
 	}
 
-	resetServingSizeState() {
-		const { resetServingSizeState } = this.state;
-		
-		this.setState({ resetServingSizeState: !resetServingSizeState })
-	}
 
 	render() {
 		const { showModal, hideModal, selectedFoodItem } = this.props;
 		return (
 			<Modal show={showModal} onHide={hideModal}>
 				<If condition={!this.state.searchBarInput}>
-					<Modal.Header>
+					<Modal.Header closeButton>
 						<h3
 							className="date text-center"
 							style={styles.headerText}>
@@ -64,9 +70,13 @@ class AddMealModal extends Component {
 				</If>
 
 				<If condition={selectedFoodItem}>
-					<Modal.Header>
-						<DisplaySelectedFoodItem foodItem={selectedFoodItem} />
-
+					<Modal.Header closeButton>
+						<DisplaySelectedFoodItem
+							foodItem={selectedFoodItem}
+							resetSearchBarInput={this.resetSearchBarInput}/>
+						{/*<SearchBar
+							changeSearchBarInput={this.changeSearchBarInput}
+							/>*/}
 					</Modal.Header>
 				</If>
 				<Modal.Body>
@@ -90,14 +100,17 @@ class AddMealModal extends Component {
 
 				</Modal.Body>
 
-				<Modal.Footer>
-					<SubmitButtons
-						confirm={() => true}
-						reset={this.resetServingSizeState}
-						/>
+					<Modal.Footer>
+						<If condition={selectedFoodItem}>
+						<SubmitButtons
+							confirm={() => true}
+							reset={this.resetServingSizeState}
+							/>
 
+					</If>
 
-				</Modal.Footer>
+					</Modal.Footer>
+
 			</Modal>
 		)
 	}
