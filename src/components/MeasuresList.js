@@ -22,7 +22,7 @@ class MeasuresList extends Component {
 		}
 		return (
 			<div
-				className="list-group">
+				className="list-group measures-list">
 				{displayMeasures}
 			</div>
 		)

@@ -185,7 +185,7 @@ const styles = {
 		height: 40,
 		padding: 10,
 		// marginBottom: 20,
-		width: '100%'
+		width: '80vw'
 	}
 }
 

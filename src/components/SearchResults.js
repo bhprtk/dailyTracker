@@ -19,7 +19,7 @@ class SearchResults extends Component {
 			})
 		}
 		return (
-			<div className="list-group">
+			<div className="list-group search-results">
 				{items}
 			</div>
 		)

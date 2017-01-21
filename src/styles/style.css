@@ -33,6 +33,12 @@ button.cells:focus {
 	position: relative;
 }
 
+.measures-list {
+	position: absolute;
+	width: 80vw;
+	z-index: 1;
+}
+
 .outline {
 	border: 2px solid #fff;
 	border-radius: 30px;
@@ -50,6 +56,10 @@ button.cells:focus {
 .progress-bar {
 	box-shadow: none;
 	/*background: #2BC253;*/
+}
+
+.search-results {
+	z-index: 1;
 }
 
 .slider-div {

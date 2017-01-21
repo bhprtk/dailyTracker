@@ -50,6 +50,7 @@ class AddMealModal extends Component {
 		const { actions, selectedFoodItem, hideModal } = this.props;
 		actions.updateTodaysCalories(selectedFoodItem.nf_calories);
 		actions.removeSelectedFoodItem();
+		this.resetSearchBarInput();
 		hideModal();
 	}
 
@@ -103,7 +104,7 @@ class AddMealModal extends Component {
 					<Modal.Footer>
 						<If condition={selectedFoodItem}>
 						<SubmitButtons
-							confirm={() => true}
+							confirm={this.saveMeal}
 							reset={this.resetServingSizeState}
 							/>
 
