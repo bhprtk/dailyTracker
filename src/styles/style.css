@@ -25,12 +25,8 @@ button.cells:focus {
 
 }
 
-.food-thumbnail {
-	position: absolute;
-	height: 45px;
-	right: 1;
-	width: 50px;
-	top: 0;
+.food-thumbnail-for-modal {
+	margin-top: -15px;
 }
 
 .list-group-item {

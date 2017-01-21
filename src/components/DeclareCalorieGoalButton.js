@@ -20,8 +20,8 @@ const DeclareCalorieGoalButton = ({showModal}) => {
 
 const styles = {
 	button: {
+		background: '#E57373',
 		color: '#fff',
-		background: '#DD5152',
 		fontWeight: 'bold',
 		height: '40vh'
 	}

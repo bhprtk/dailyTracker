@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import Slider from 'material-ui/Slider';
 
 import actions from '../actions/creators';
+import SubmitButtons from './SubmitButtons';
 
 class DeclareCalorieGoalModal extends Component {
 	constructor(props) {
@@ -104,21 +105,10 @@ class DeclareCalorieGoalModal extends Component {
 				</Modal.Body>
 
 				<Modal.Footer>
-					<button
-						className="date col-md-5 col-sm-5 col-xs-5"
-						onClick={this.resetCalories}
-						style={styles.submitButton}>
-						<h4>Reset</h4>
-					</button>
-
-					<button
-						className="date col-md-5 col-sm-5 col-xs-5"
-						onClick={this.setCalories}
-						style={styles.submitButton}>
-						<h4>Confirm</h4>
-					</button>
-
-
+					<SubmitButtons
+						confirm={this.setCalories}
+						reset={this.resetCalories}
+						/>
 
 				</Modal.Footer>
 			</Modal>
@@ -142,15 +132,6 @@ const styles = {
 	},
 	sliderDiv: {
 		display: 'flex'
-	},
-	submitButton: {
-		background: '#fff',
-		borderColor: '#90A4AE',
-		borderStyle: 'solid',
-		borderWidth: 2,
-		color: '#90A4AE',
-		margin: 10
-		// width: 200
 	}
 }
 

@@ -19,16 +19,16 @@ class DisplaySelectedFoodItem extends Component {
 	render() {
 		const { foodItem } = this.props;
 		return (
-			<div className="text-center">
-				<div
-					onClick={this.removeSelectedFoodItem}
-					className="text-center"
-					style={styles.container}>
-					<img src={foodItem.photo.thumb} style={styles.thumbnail} />
-					<span style={styles.foodName}>{foodItem.food_name}</span>
-				</div>
-
+			<div
+				onClick={this.removeSelectedFoodItem}
+				style={styles.container}>
+				<img
+					className="food-thumbnail-for-modal"
+					src={foodItem.photo.thumb}
+					style={styles.thumbnail} />
+				<span style={styles.foodName}>{foodItem.food_name}</span>
 			</div>
+
 		)
 	}
 }
@@ -40,8 +40,8 @@ const styles = {
 		padding: 5,
 	},
 	thumbnail: {
-		height: 45,
-		width: 45
+		height: 75,
+		width: 75
 	},
 	foodName: {
 		marginLeft: 15,

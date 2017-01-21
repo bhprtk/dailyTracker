@@ -8,17 +8,20 @@ import actions from '../actions/creators';
 import DisplaySelectedFoodItem from './DisplaySelectedFoodItem';
 import SearchBar from './SearchBar';
 import ServingSize from './ServingSize';
+import SubmitButtons from './SubmitButtons';
 
 class AddMealModal extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			searchBarInput: ''
+			searchBarInput: '',
+			resetServingSizeState: false
 		}
 
 		this.changeCalories = this.changeCalories.bind(this);
 		this.changeSearchBarInput = this.changeSearchBarInput.bind(this);
+		this.resetServingSizeState = this.resetServingSizeState.bind(this);
 		this.saveMeal = this.saveMeal.bind(this);
 	}
 
@@ -37,6 +40,12 @@ class AddMealModal extends Component {
 		actions.updateTodaysCalories(selectedFoodItem.nf_calories);
 		actions.removeSelectedFoodItem();
 		hideModal();
+	}
+
+	resetServingSizeState() {
+		const { resetServingSizeState } = this.state;
+		
+		this.setState({ resetServingSizeState: !resetServingSizeState })
 	}
 
 	render() {
@@ -75,17 +84,18 @@ class AddMealModal extends Component {
 						<ServingSize
 							measures={selectedFoodItem.alt_measures}
 							changeCalories={this.changeCalories}
-							selectedFoodItem={selectedFoodItem} />
+							selectedFoodItem={selectedFoodItem}
+							resetState={this.state.resetServingSizeState} />
 					</If>
 
 				</Modal.Body>
 
 				<Modal.Footer>
-					<button
-						className="btn btn-success"
-						onClick={this.saveMeal}>
-						Add
-					</button>
+					<SubmitButtons
+						confirm={() => true}
+						reset={this.resetServingSizeState}
+						/>
+
 
 				</Modal.Footer>
 			</Modal>

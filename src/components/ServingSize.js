@@ -19,11 +19,23 @@ class ServingSize extends Component {
 		this.showMeasuresList = this.showMeasuresList.bind(this);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if(this.props.resetState !== nextProps.resetState) {
+			this.setState({
+				showMeasuresList: false,
+				unit: '',
+				qty: 0
+			})
+		}
+	}
+
 	decreaseQty() {
 		const { qty, unit } = this.state;
 		const { changeCalories } = this.props;
-		this.setState({ qty: qty - 1 });
-		changeCalories(qty - 1, unit);
+		if(qty > 0) {
+			this.setState({ qty: qty - 1 });
+			changeCalories(qty - 1, unit);
+		}
 	}
 
 	increaseQty() {
@@ -62,13 +74,35 @@ class ServingSize extends Component {
 		return (
 			<If condition={measuresArr}>
 				<div style={styles.container}>
+					<If condition={measuresArr}>
+						<div
+							className="text-center"
+							onClick={this.showMeasuresList}
+							style={styles.unit}>
+							<strong>Select Unit</strong>
+							<span
+								className="pull-right"
+								style={styles.grey69}>
+								<i className="fa fa-caret-down"></i>
+							</span>
+						</div>
+						<If condition={this.state.showMeasuresList}>
+							<MeasuresList
+								selectUnit={this.selectUnit}
+								measures={measuresArr}/>
+						</If>
+
+					</If>
 						<div style={styles.selectRow}>
 							<div className="text-center">
 
 								<button
 									className="btn btn-default"
 									onClick={this.increaseQty}
-									style={styles.grey69}>
+									style={{
+										marginTop: 20,
+										color: '#90A4AE'
+									}}>
 									<i className="fa fa-caret-up"></i>
 								</button>
 
@@ -77,7 +111,7 @@ class ServingSize extends Component {
 									style={{ marginTop: 10 }}>
 									<span style={{
 											color: '#90A4AE',
-											fontSize: 32
+											fontSize: 64
 										}}>
 										{this.state.qty}
 									</span>
@@ -104,31 +138,15 @@ class ServingSize extends Component {
 
 
 					<div className="text-center">
-						<h1 className="date">
+						<h1
+							className="date"
+							style={{
+								fontSize: 64
+							}}>
 							<span style={styles.greyBlue}>{calories}</span>
 							<span style={styles.grey69}> kcal</span>
-							</h1>
+						</h1>
 					</div>
-
-					<If condition={measuresArr}>
-						<div
-							className="text-center"
-							onClick={this.showMeasuresList}
-							style={styles.unit}>
-							<strong>Select Unit</strong>
-							<span
-								className="pull-right"
-								style={styles.grey69}>
-								<i className="fa fa-caret-down"></i>
-							</span>
-						</div>
-						<If condition={this.state.showMeasuresList}>
-							<MeasuresList
-								selectUnit={this.selectUnit}
-								measures={measuresArr}/>
-						</If>
-
-					</If>
 
 
 				</div>
@@ -160,15 +178,13 @@ const styles = {
 		// display: 'flex'
 	},
 	unit: {
-		// background: '#fafafa',
-		borderColor: '#696969',
+		borderColor: '#90A4AE',
 		borderWidth: 2,
 		borderStyle: 'solid',
 		color: '#90A4AE',
 		height: 40,
-
 		padding: 10,
-		marginTop: 20,
+		// marginBottom: 20,
 		width: '100%'
 	}
 }
