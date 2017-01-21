@@ -1,7 +1,7 @@
 import CircularProgress from 'material-ui/CircularProgress';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import image_heart from '../assets/heart.gif';
+import image_heart from '../assets/heartTransparent.gif';
 
 import DeclareCalorieGoalModal from './DeclareCalorieGoalModal';
 
@@ -77,7 +77,8 @@ class DisplayCaloriesConsumed extends Component {
 
 const styles = {
 	container: {
-		background: '#DD5152',
+		background: '#E57373',
+		// background: '#DD5152',
 		color: '#fff',
 		height: '40vh',
 		paddingLeft: 10,
@@ -106,7 +107,7 @@ const styles = {
 		width: 85
 	},
 	progress: {
-		background: '#DD5152',
+		background: '#E57373',
 		borderRadius: 15,
 		height: 15
 	}

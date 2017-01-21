@@ -13,7 +13,6 @@ class IndividualResult extends Component {
 
 	selectFood() {
 		const { result, actions } = this.props;
-		console.log ('result:', result)
 		actions.selectFoodItem(result);
 	}
 
@@ -35,14 +34,14 @@ class IndividualResult extends Component {
 }
 
 const styles = {
-	thumbnail: {
-		height: 45,
-		width: 45
-	},
 	container: {
 		display: 'flex',
 		height: 55,
 		padding: 5
+	},
+	thumbnail: {
+		height: 45,
+		width: 45
 	},
 	foodName: {
 		marginLeft: 15,

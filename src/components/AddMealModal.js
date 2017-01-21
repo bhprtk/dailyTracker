@@ -53,6 +53,13 @@ class AddMealModal extends Component {
 					</Modal.Header>
 
 				</If>
+
+				<If condition={selectedFoodItem}>
+					<Modal.Header>
+						<DisplaySelectedFoodItem foodItem={selectedFoodItem} />
+
+					</Modal.Header>
+				</If>
 				<Modal.Body>
 					{/*<TimePicker
 						hintText="Start Time"
@@ -64,7 +71,7 @@ class AddMealModal extends Component {
 							/>
 					</If>
 					<If condition={selectedFoodItem}>
-						<DisplaySelectedFoodItem foodItem={selectedFoodItem} />
+
 						<ServingSize
 							measures={selectedFoodItem.alt_measures}
 							changeCalories={this.changeCalories}

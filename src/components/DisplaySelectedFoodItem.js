@@ -13,28 +13,35 @@ class DisplaySelectedFoodItem extends Component {
 
 	removeSelectedFoodItem() {
 		const { actions } = this.props;
-		console.log('remove')
 		actions.removeSelectedFoodItem();
 	}
 
 	render() {
 		const { foodItem } = this.props;
 		return (
-			<a
-				onClick={this.removeSelectedFoodItem}
-				role="button"
-				className="list-group-item">
-				<img src={foodItem.photo.thumb} style={styles.thumbnail} />
-				<span style={styles.foodName}>{foodItem.food_name}</span>
-			</a>
+			<div className="text-center">
+				<div
+					onClick={this.removeSelectedFoodItem}
+					className="text-center"
+					style={styles.container}>
+					<img src={foodItem.photo.thumb} style={styles.thumbnail} />
+					<span style={styles.foodName}>{foodItem.food_name}</span>
+				</div>
+
+			</div>
 		)
 	}
 }
 
 const styles = {
+	container: {
+		display: 'flex',
+		height: 55,
+		padding: 5,
+	},
 	thumbnail: {
-		height: 50,
-		width: 50
+		height: 45,
+		width: 45
 	},
 	foodName: {
 		marginLeft: 15,
