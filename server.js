@@ -4,7 +4,7 @@ const colors = require("colors");
 const config = require('./webpack.config.dev');
 const webpack = require('webpack');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const compiler = webpack(config);
 
