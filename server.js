@@ -15,9 +15,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, './public/index.html'));
-});
+// app.get('*', function(req, res) {
+//   res.sendFile(path.join( __dirname, './public/index.html'));
+// });
 
 app.listen(PORT, err => {
 	console.log(err || `Server listening on port ${PORT}`.magenta);
